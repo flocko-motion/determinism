@@ -4,6 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 RUN apt-get -qq update && \
     apt-get -qq install -y build-essential gcc-aarch64-linux-gnu gcc gcc-9-aarch64-linux-gnu \
+            vim \
             device-tree-compiler make git wget bison flex libghc-libyaml-dev ca-certificates \
             python3-minimal python3-distutils u-boot-tools bc swig python3-dev libc6-dev libc6-dev-i386 \
             libssl-dev dpkg-dev locales python3-setuptools squashfs-tools libseccomp-dev libcap-dev xfslibs-dev \
