@@ -40,9 +40,12 @@ RUN echo "yocto ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 # Add Python toolchain
 RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN apt-get -qq install -y python-is-python3 python3-dev python3-minimal python3-distutils python3-setuptools python3-pip
+RUN pip install --upgrade pip
+# poetry
 RUN curl -sSL https://install.python-poetry.org | python3 - 
 RUN export PATH="/root/.local/bin:$PATH"
-
+# wheel building
+RUN pip install build
 
 # Add Linux tools
 RUN apt-get -qq install -y vim dos2unix
