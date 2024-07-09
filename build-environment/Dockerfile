@@ -6,8 +6,10 @@ RUN apt-get -qq update && \
     apt-get -qq install -y build-essential gcc-aarch64-linux-gnu gcc gcc-9-aarch64-linux-gnu \
             vim dos2unix \
             device-tree-compiler make git wget bison flex libghc-libyaml-dev ca-certificates \
-            python3-minimal python3-distutils u-boot-tools bc swig python3-dev libc6-dev libc6-dev-i386 \
-            libssl-dev dpkg-dev locales python3-setuptools squashfs-tools libseccomp-dev libcap-dev xfslibs-dev \
+            u-boot-tools bc swig libc6-dev libc6-dev-i386 \
+            libssl-dev dpkg-dev locales \
+            python3-dev python3-minimal python3-distutils python3-setuptools python3-pip \
+            squashfs-tools libseccomp-dev libcap-dev xfslibs-dev \
             dracut-core sudo adduser xdelta3 sudo qemu-utils linux-image-generic dosfstools libguestfs-tools mtools sudo autoconf autoconf-archive libtool make && rm -rf /var/lib/apt/lists/* > /dev/null
 # Download and extract libseccomp-dev for arm64 to build snapd bins
 RUN wget --no-check-certificate http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libseccomp/libseccomp-dev_2.5.3-2ubuntu2_arm64.deb && dpkg-deb -x libseccomp-dev_2.5.3-2ubuntu2_arm64.deb /
