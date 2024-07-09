@@ -11,9 +11,12 @@ RUN apt-get -qq update && \
             squashfs-tools libseccomp-dev libcap-dev xfslibs-dev \
             dracut-core sudo adduser xdelta3 qemu-utils linux-image-generic dosfstools libguestfs-tools mtools \
             autoconf autoconf-archive libtool chrpath diffstat zstd tar
-            
+
+# Path for manual installs
+RUN mkdir /tmp/install && cd /tmp/install
+
 # Download and extract libseccomp-dev for arm64 to build snapd bins
-RUN wget --no-check-certificate http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libseccomp/libseccomp-dev_2.5.3-2ubuntu2_arm64.deb && dpkg-deb -x libseccomp-dev_2.5.3-2ubuntu2_arm64.deb /
+RUN wget --no-check-certificate http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libseccomp/libseccomp-dev_2.5.3-2ubuntu2_arm64.deb && dpkg-deb -x libseccomp-dev_2.5.3-2ubuntu2_arm64.deb / 
 
 # Install Golang
 RUN wget --no-check-certificate https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
@@ -48,5 +51,8 @@ RUN apt-get -qq install -y vim dos2unix
 
 # Cleanup to make image smaller
 RUN rm -rf /var/lib/apt/lists/* > /dev/null
+
+# Cleanup
+RUN rm -rf /tmp/install
 
 CMD ["bash"]
