@@ -43,9 +43,8 @@ RUN apt-get -qq install -y python-is-python3 python3-dev python3-minimal python3
 RUN pip install --upgrade pip
 # poetry
 # Install Poetry globally
-RUN curl -sSL https://install.python-poetry.org | python3 - --prefix=/usr/local
-ENV PATH="/usr/local/bin:$PATH"
-# wheel building
+RUN curl -sSL https://install.python-poetry.org | python3
+RUN sudo mv $HOME/.local/bin/poetry /usr/local/bin/poetry
 RUN pip install build
 
 # Add Linux tools
