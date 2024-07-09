@@ -19,14 +19,13 @@ RUN wget --no-check-certificate http://ports.ubuntu.com/ubuntu-ports/pool/main/l
 RUN wget --no-check-certificate https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
 
-# Configure Python
-RUN ln -s /usr/bin/python3 /usr/bin/python
-
+# Setup locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
     locale-gen
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
+
 # Adding repo sync for yocto in docker builds
 RUN wget https://storage.googleapis.com/git-repo-downloads/repo && chmod a+x repo && mv repo /usr/local/bin/repo
 ENV PATH="/usr/local/bin:$PATH" 
@@ -39,7 +38,9 @@ RUN adduser yocto sudo
 RUN echo "yocto ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Add Python toolchain
+RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN apt-get -qq install -y python-is-python3 python3-dev python3-minimal python3-distutils python3-setuptools python3-pip
+RUN curl -sSL https://install.python-poetry.org | python3 -
 
 # Add Linux tools
 RUN apt-get -qq install -y vim dos2unix
