@@ -31,9 +31,9 @@ RUN tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
 # Setup locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
     locale-gen
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
-ENV LC_ALL en_US.UTF-8
+ENV LANG="en_US.UTF-8"
+ENV LANGUAGE="en_US:en"
+ENV LC_ALL="en_US.UTF-8"
 
 # Adding repo sync for yocto in docker builds
 RUN wget https://storage.googleapis.com/git-repo-downloads/repo && chmod a+x repo && mv repo /usr/local/bin/repo
@@ -47,7 +47,7 @@ RUN adduser yocto sudo
 RUN echo "yocto ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Configure Python toolchain
-RUN ln -s /usr/bin/python3 /usr/bin/python
+# RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN pip install --upgrade pip
 RUN pip install build
 
