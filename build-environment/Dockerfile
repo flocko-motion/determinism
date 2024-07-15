@@ -5,11 +5,11 @@ RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
 # NOTE: When adding more packages, DONT ADD THEM IN THIS SECTION - rather do it further down. That'll be beneficial for layer caching
 RUN apt-get -qq update && \
-    apt-get -qq install -y build-essential gcc gcc-aarch64-linux-gnu gcc gcc-9-aarch64-linux-gnu \
-            libghc-libyaml-dev libc6-dev libc6-dev-i386 libssl-dev  libseccomp-dev libcap-dev xfslibs-dev  libguestfs-tools liblz4-tool libacl1 \
-            sudo adduser make gawk autoconf autoconf-archive git wget file locales  ca-certificates  zstd tar unzip xz-utils zstd \
+    apt-get -qq install -y build-essential gcc gcc-aarch64-linux-gnu gcc gcc-9-aarch64-linux-gnu gcc-multilib \
+            libghc-libyaml-dev libc6-dev libc6-dev-i386 libssl-dev  libseccomp-dev libcap-dev xfslibs-dev  libguestfs-tools liblz4-tool libacl1 libsdl1.2-dev \
+            sudo adduser make gawk autoconf autoconf-archive git git-core wget file locales  ca-certificates  zstd tar unzip xz-utils zstd \
             squashfs-tools dpkg-dev debianutils xdelta3 \
-            iputils-ping vim dos2unix \
+            iputils-ping vim dos2unix xterm \
             device-tree-compiler bison flex u-boot-tools bc swig \            
             dracut-core qemu-utils linux-image-generic dosfstools mtools \
             libtool chrpath diffstat socat cpio texinfo \
