@@ -51,6 +51,13 @@ RUN echo "yocto ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN pip install --upgrade pip
 RUN pip install build
 
+# Install libraries for determinism.py
+RUN pip install base58==2.1.1
+RUN pip install pyyaml==6.0.1
+RUN pip install colorlog==6.7.0
+RUN pip install requests==2.31.0
+RUN pip install graphviz==0.20.3
+
 # Install Yocto Build Tools
 RUN cd /opt/ && git clone git://git.yoctoproject.org/poky
 
