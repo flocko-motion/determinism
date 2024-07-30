@@ -4,17 +4,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
 # NOTE: When adding more packages, DONT ADD THEM IN THIS SECTION - rather do it further down. That'll be beneficial for layer caching
-RUN apt-get -qq update && \
-    apt-get -qq install -y build-essential gcc gcc-aarch64-linux-gnu gcc gcc-9-aarch64-linux-gnu gcc-multilib \
-            libghc-libyaml-dev libc6-dev libc6-dev-i386 libssl-dev  libseccomp-dev libcap-dev xfslibs-dev  libguestfs-tools liblz4-tool libacl1 libsdl1.2-dev \
-            sudo adduser make gawk autoconf autoconf-archive git git-core wget file locales  ca-certificates  zstd tar unzip xz-utils zstd \
-            squashfs-tools dpkg-dev debianutils xdelta3 \
-            iputils-ping vim dos2unix xterm \
-            device-tree-compiler bison flex u-boot-tools bc swig \            
-            dracut-core qemu-utils linux-image-generic dosfstools mtools \
-            libtool chrpath diffstat socat cpio texinfo \
-            python3 python3-pip python3-pexpect python-is-python3 python3-dev python3-minimal python3-distutils python3-setuptools python3-pip \
-            python3-git python3-jinja2 python3-subunit 
+RUN apt-get -qq update
+RUN apt-get -qq install -y build-essential gcc gcc-aarch64-linux-gnu gcc gcc-9-aarch64-linux-gnu gcc-multilib 
+RUN apt-get -qq install -y libghc-libyaml-dev libc6-dev libc6-dev-i386 libssl-dev  libseccomp-dev libcap-dev xfslibs-dev  libguestfs-tools liblz4-tool libacl1 libsdl1.2-dev 
+RUN apt-get -qq install -y sudo adduser make gawk autoconf autoconf-archive git git-core wget file locales  ca-certificates  zstd tar unzip xz-utils zstd
+RUN apt-get -qq install -y squashfs-tools dpkg-dev debianutils xdelta3
+RUN apt-get -qq install -y iputils-ping vim dos2unix xterm
+RUN apt-get -qq install -y device-tree-compiler bison flex u-boot-tools bc swig
+RUN apt-get -qq install -y dracut-core qemu-utils linux-image-generic dosfstools mtools
+RUN apt-get -qq install -y libtool chrpath diffstat socat cpio texinfo
+RUN apt-get -qq install -y python3 python3-pip python3-pexpect python-is-python3 python3-dev python3-minimal python3-distutils python3-setuptools python3-pip
+RUN apt-get -qq install -y python3-git python3-jinja2 python3-subunit 
 
 RUN sudo locale-gen en_US.UTF-8
 
