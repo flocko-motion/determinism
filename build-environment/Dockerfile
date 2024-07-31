@@ -6,10 +6,10 @@ RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 # NOTE: When adding more packages, DONT ADD THEM IN THIS SECTION - rather do it further down. That'll be beneficial for layer caching
 RUN apt-get -qq update
 RUN apt-get -qq install -y build-essential gcc gcc-aarch64-linux-gnu gcc gcc-9-aarch64-linux-gnu  
-RUN apt-get -qq install -y gcc-multilib libghc-libyaml-dev libc6-dev libc6-dev-i386 libssl-dev  libseccomp-dev libcap-dev xfslibs-dev  libguestfs-tools liblz4-tool libacl1 libsdl1.2-dev 
+RUN apt-get -qq install -y gcc-multilib libghc-libyaml-dev libc6-dev libc6-dev-i386 libssl-dev  libseccomp-dev libcap-dev xfslibs-dev  libguestfs-tools liblz4-tool libacl1 libsdl1.2-dev gdisk
 RUN apt-get -qq install -y sudo adduser make gawk autoconf autoconf-archive git git-core wget file locales  ca-certificates  zstd tar unzip xz-utils zstd
 RUN apt-get -qq install -y squashfs-tools dpkg-dev debianutils xdelta3
-RUN apt-get -qq install -y iputils-ping vim dos2unix xterm
+RUN apt-get -qq install -y iputils-ping vim nano dos2unix xterm
 RUN apt-get -qq install -y device-tree-compiler bison flex u-boot-tools bc swig
 RUN apt-get -qq install -y dracut-core qemu-utils linux-image-generic dosfstools mtools
 RUN apt-get -qq install -y libtool chrpath diffstat socat cpio texinfo
@@ -57,9 +57,6 @@ RUN pip install pyyaml==6.0.1
 RUN pip install colorlog==6.7.0
 RUN pip install requests==2.31.0
 RUN pip install graphviz==0.20.3
-
-# Install Yocto Build Tools
-RUN cd /opt/ && git clone git://git.yoctoproject.org/poky
 
 # Cleanup to make image smaller
 RUN rm -rf /var/lib/apt/lists/* > /dev/null
