@@ -9,7 +9,7 @@ RUN apt-get -qq install -y build-essential gcc gcc-aarch64-linux-gnu gcc gcc-9-a
 RUN apt-get -qq install -y gcc-multilib libghc-libyaml-dev libc6-dev libc6-dev-i386 libssl-dev  libseccomp-dev libcap-dev xfslibs-dev  libguestfs-tools liblz4-tool libacl1 libsdl1.2-dev gdisk
 RUN apt-get -qq install -y sudo adduser make gawk autoconf autoconf-archive git git-core wget file locales  ca-certificates  zstd tar unzip xz-utils zstd
 RUN apt-get -qq install -y squashfs-tools dpkg-dev debianutils xdelta3
-RUN apt-get -qq install -y iputils-ping vim nano dos2unix xterm
+RUN apt-get -qq install -y iputils-ping vim nano dos2unix xterm jq
 RUN apt-get -qq install -y device-tree-compiler bison flex u-boot-tools bc swig
 RUN apt-get -qq install -y dracut-core qemu-utils linux-image-generic dosfstools mtools
 RUN apt-get -qq install -y libtool chrpath diffstat socat cpio texinfo
