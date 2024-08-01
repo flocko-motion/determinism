@@ -51,7 +51,9 @@ RUN echo "yocto ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN pip install --upgrade pip
 RUN pip install build
 
-RUN pip install yq
+# Install yq without pip and use latest from github, in pip is 3.4.3, current is 4.44
+RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\
+    chmod +x /usr/bin/yq
 
 # Install libraries for determinism.py
 RUN pip install base58==2.1.1
