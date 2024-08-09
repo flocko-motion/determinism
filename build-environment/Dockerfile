@@ -15,6 +15,7 @@ RUN apt-get -qq install -y dracut-core qemu-utils linux-image-generic dosfstools
 RUN apt-get -qq install -y libtool chrpath diffstat socat cpio texinfo
 RUN apt-get -qq install -y python3 python3-pip python3-pexpect python-is-python3 python3-dev python3-minimal python3-distutils python3-setuptools python3-pip
 RUN apt-get -qq install -y python3-git python3-jinja2 python3-subunit 
+RUN apt-get install -y gcc-9-aarch64-linux-gnu gcc-aarch64-linux-gnu
 
 RUN sudo locale-gen en_US.UTF-8
 
