@@ -15,15 +15,13 @@ RUN apt-get -qq install -y dracut-core qemu-utils linux-image-generic dosfstools
 RUN apt-get -qq install -y libtool chrpath diffstat socat cpio texinfo
 RUN apt-get -qq install -y python3 python3-pip python3-pexpect python-is-python3 python3-dev python3-minimal python3-distutils python3-setuptools python3-pip
 RUN apt-get -qq install -y python3-git python3-jinja2 python3-subunit 
-RUN apt-get install -y gcc-9-aarch64-linux-gnu gcc-aarch64-linux-gnu rsync
+RUN apt-get -qq install -y gcc-9-aarch64-linux-gnu gcc-aarch64-linux-gnu rsync
+RUN apt-get -qq install -y autoconf automake autotools-dev bash-completion debhelper dh-apparmor dh-golang fakeroot gcc-multilib 
+RUN apt-get -qq install -y grub-common gnupg2 libapparmor-dev indent libcap-dev libfuse3-dev libglib2.0-dev liblzma-dev liblzo2-dev libseccomp-dev 
+RUN apt-get -qq install -y libudev-dev pkg-config python3-docutils python3-markdown tzdata xfslibs-dev  dbus squashfs-tools udev gcc-10 autoconf-archive flake8 python3-bs4 python3-pytest
+RUN apt-get -qq install -y libfuse-dev golang-1.18
 
 RUN sudo locale-gen en_US.UTF-8
-
-# Install Podman
-RUN . /etc/os-release && sh -c "echo 'deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
-RUN . /etc/os-release && wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/xUbuntu_${VERSION_ID}/Release.key -O- | sudo apt-key add -
-RUN apt-get update -qq
-RUN apt-get -qq --yes install podman
 
 # Path for manual installs
 RUN mkdir /tmp/install && cd /tmp/install
@@ -61,13 +59,6 @@ RUN pip install build
 # Install yq without pip and use latest from github, in pip is 3.4.3, current is 4.44
 RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\
     chmod +x /usr/bin/yq
-
-# Install libraries for determinism.py
-RUN pip install base58==2.1.1
-RUN pip install pyyaml==6.0.1
-RUN pip install colorlog==6.7.0
-RUN pip install requests==2.31.0
-RUN pip install graphviz==0.20.3
 
 # Cleanup to make image smaller
 RUN rm -rf /var/lib/apt/lists/* > /dev/null
