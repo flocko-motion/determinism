@@ -19,7 +19,7 @@ RUN apt-get -qq install -y gcc-9-aarch64-linux-gnu gcc-aarch64-linux-gnu rsync
 RUN apt-get -qq install -y autoconf automake autotools-dev bash-completion debhelper dh-apparmor dh-golang fakeroot gcc-multilib 
 RUN apt-get -qq install -y grub-common gnupg2 libapparmor-dev indent libcap-dev libfuse3-dev libglib2.0-dev liblzma-dev liblzo2-dev libseccomp-dev 
 RUN apt-get -qq install -y libudev-dev pkg-config python3-docutils python3-markdown tzdata xfslibs-dev  dbus squashfs-tools udev gcc-10 autoconf-archive flake8 python3-bs4 python3-pytest
-RUN apt-get -qq install -y libfuse-dev golang-1.18
+RUN apt-get -qq install -y libfuse-dev
 
 RUN sudo locale-gen en_US.UTF-8
 
@@ -30,8 +30,8 @@ RUN mkdir /tmp/install && cd /tmp/install
 RUN wget --no-check-certificate http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libseccomp/libseccomp-dev_2.5.3-2ubuntu2_arm64.deb && dpkg-deb -x libseccomp-dev_2.5.3-2ubuntu2_arm64.deb / 
 
 # Install Golang
-RUN wget --no-check-certificate https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
-RUN tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
+RUN wget --no-check-certificate https://go.dev/dl/go1.23.2.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.23.2.linux-amd64.tar.gz
 
 # Setup locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
