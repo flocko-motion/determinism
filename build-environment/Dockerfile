@@ -13,7 +13,7 @@ RUN apt-get -qq install -y iputils-ping vim nano dos2unix xterm jq
 RUN apt-get -qq install -y device-tree-compiler bison flex u-boot-tools bc swig
 RUN apt-get -qq install -y dracut-core qemu-utils linux-image-generic dosfstools mtools
 RUN apt-get -qq install -y libtool chrpath diffstat socat cpio texinfo
-RUN apt-get -qq install -y python3 python3-pip python3-pexpect python-is-python3 python3-dev python3-minimal python3-distutils python3-setuptools python3-pip
+RUN apt-get -qq install -y python3 python3-pip python3-pexpect python3-dev python3-distutils python3-setuptools
 RUN apt-get -qq install -y python3-git python3-jinja2 python3-subunit 
 RUN apt-get -qq install -y gcc-9-aarch64-linux-gnu gcc-aarch64-linux-gnu rsync
 RUN apt-get -qq install -y autoconf automake autotools-dev bash-completion debhelper dh-apparmor dh-golang fakeroot gcc-multilib 
