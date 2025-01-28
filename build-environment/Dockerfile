@@ -56,6 +56,8 @@ RUN echo "yocto ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN apt-get -qq install -y pipx
 RUN pipx install build
 
+RUN apt-get -qq install -y gcc-aarch64-linux-gnu
+
 # Install yq without pip and use latest from github, in pip is 3.4.3, current is 4.44
 RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\
     chmod +x /usr/bin/yq
