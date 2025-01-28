@@ -13,7 +13,7 @@ RUN apt-get -qq install -y iputils-ping vim nano dos2unix xterm jq
 RUN apt-get -qq install -y device-tree-compiler bison flex u-boot-tools bc swig
 RUN apt-get -qq install -y dracut-core qemu-utils linux-image-generic dosfstools mtools
 RUN apt-get -qq install -y libtool chrpath diffstat socat cpio texinfo
-RUN apt-get -qq install -y python3 python3-pip python3-pexpect python3-dev python3-distutils python3-setuptools
+RUN apt-get -qq install -y python3 python3-pip python3-pexpect python3-dev python3-setuptools
 RUN apt-get -qq install -y python3-git python3-jinja2 python3-subunit 
 RUN apt-get -qq install -y gcc-9-aarch64-linux-gnu gcc-aarch64-linux-gnu rsync
 RUN apt-get -qq install -y autoconf automake autotools-dev bash-completion debhelper dh-apparmor dh-golang fakeroot gcc-multilib 
@@ -42,7 +42,7 @@ ENV LC_ALL="en_US.UTF-8"
 
 # Adding repo sync for yocto in docker builds
 RUN wget https://storage.googleapis.com/git-repo-downloads/repo && chmod a+x repo && mv repo /usr/local/bin/repo
-ENV PATH="/usr/local/bin:$PATH" 
+ENV PATH="/usr/local/bin:$PATH:/root/.local/bin:/home/yocto/.local/bin"
 ENV PATH=$PATH:/usr/local/go/bin
 
 # Add user to sudo without password
@@ -53,8 +53,8 @@ RUN echo "yocto ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Configure Python toolchain
 # RUN ln -s /usr/bin/python3 /usr/bin/python
-RUN pip install --upgrade pip
-RUN pip install build
+RUN apt-get -qq install -y pipx
+RUN pipx install build
 
 # Install yq without pip and use latest from github, in pip is 3.4.3, current is 4.44
 RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\
