@@ -48,7 +48,7 @@ ENV PATH=$PATH:/usr/local/go/bin
 # Add user to sudo without password
 RUN adduser --disabled-password yocto
 RUN adduser yocto sudo
-RUN adduser ubuntu sudo
+#RUN adduser ubuntu sudo
 #USER builduser
 RUN echo "yocto ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
