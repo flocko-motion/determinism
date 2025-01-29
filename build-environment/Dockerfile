@@ -52,10 +52,11 @@ RUN adduser yocto sudo
 #USER builduser
 RUN echo "yocto ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
 # Configure Python toolchain
 # RUN ln -s /usr/bin/python3 /usr/bin/python
-RUN apt-get -qq install -y pipx
-RUN pipx install build
+RUN pip install --upgrade pip
+RUN pip install build
 
 RUN apt-get -qq install -y gcc-aarch64-linux-gnu
 
