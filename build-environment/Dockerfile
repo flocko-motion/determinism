@@ -55,7 +55,6 @@ RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Configure Python toolchain
 # RUN ln -s /usr/bin/python3 /usr/bin/python
-RUN pip install --upgrade pip
 RUN apt-get -qq install -y python3-build python3-pip
 
 RUN apt-get -qq install -y gcc-aarch64-linux-gnu
