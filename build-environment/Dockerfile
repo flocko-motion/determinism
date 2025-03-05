@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:noble
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
@@ -27,11 +27,11 @@ RUN sudo locale-gen en_US.UTF-8
 RUN mkdir /tmp/install && cd /tmp/install
 
 # Download and extract libseccomp-dev for arm64 to build snapd bins
-RUN wget --no-check-certificate http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libseccomp/libseccomp-dev_2.5.3-2ubuntu2_arm64.deb && dpkg-deb -x libseccomp-dev_2.5.3-2ubuntu2_arm64.deb / 
+RUN wget --no-check-certificate http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libseccomp/libseccomp-dev_2.5.5-1ubuntu6_arm64.deb && dpkg-deb -x libseccomp-dev_2.5.5-1ubuntu6_arm64.deb / 
 
 # Install Golang
-RUN wget --no-check-certificate https://go.dev/dl/go1.23.2.linux-amd64.tar.gz
-RUN tar -C /usr/local -xzf go1.23.2.linux-amd64.tar.gz
+RUN wget --no-check-certificate https://go.dev/dl/go1.24.1.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.24.1.linux-amd64.tar.gz
 
 # Setup locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
