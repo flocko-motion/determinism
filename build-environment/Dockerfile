@@ -19,7 +19,7 @@ RUN apt-get -qq install -y gcc-9-aarch64-linux-gnu gcc-aarch64-linux-gnu rsync
 RUN apt-get -qq install -y autoconf automake autotools-dev bash-completion debhelper dh-apparmor dh-golang fakeroot gcc-multilib 
 RUN apt-get -qq install -y grub-common gnupg2 libapparmor-dev indent libcap-dev libfuse3-dev libglib2.0-dev liblzma-dev liblzo2-dev libseccomp-dev 
 RUN apt-get -qq install -y libudev-dev pkg-config python3-docutils python3-markdown tzdata xfslibs-dev  dbus squashfs-tools udev gcc-10 autoconf-archive flake8 python3-bs4 python3-pytest
-RUN apt-get -qq install -y libfuse-dev
+RUN apt-get -qq install -y libfuse-dev libgnutls28-dev
 
 RUN sudo locale-gen en_US.UTF-8
 
