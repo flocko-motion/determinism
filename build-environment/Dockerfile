@@ -5,6 +5,7 @@ RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
 # NOTE: When adding more packages, DONT ADD THEM IN THIS SECTION - rather do it further down. That'll be beneficial for layer caching
 RUN apt-get -qq update
+RUN apt-get -qq install -y libblkid-dev
 RUN apt-get -qq install -y build-essential gcc-aarch64-linux-gnu gcc gcc-9-aarch64-linux-gnu
 RUN apt-get -qq install -y gcc-multilib libghc-libyaml-dev libc6-dev libc6-dev-i386 libssl-dev  libseccomp-dev libcap-dev xfslibs-dev  libguestfs-tools liblz4-tool libacl1 libsdl1.2-dev gdisk
 RUN apt-get -qq install -y sudo adduser make gawk autoconf autoconf-archive git git-core wget file locales  ca-certificates  zstd tar unzip xz-utils zstd
@@ -21,6 +22,7 @@ RUN apt-get -qq install -y grub-common gnupg2 libapparmor-dev indent libcap-dev 
 RUN apt-get -qq install -y libudev-dev pkg-config python3-docutils python3-markdown tzdata xfslibs-dev  dbus squashfs-tools udev gcc-10 autoconf-archive flake8 python3-bs4 python3-pytest
 RUN apt-get -qq install -y libfuse-dev libgnutls28-dev
 
+
 RUN sudo locale-gen en_US.UTF-8
 
 # Path for manual installs
@@ -28,6 +30,7 @@ RUN mkdir /tmp/install && cd /tmp/install
 
 # Download and extract libseccomp-dev for arm64 to build snapd bins
 RUN wget --no-check-certificate http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libseccomp/libseccomp-dev_2.5.5-1ubuntu6_arm64.deb && dpkg-deb -x libseccomp-dev_2.5.5-1ubuntu6_arm64.deb / 
+RUN wget --no-check-certificate http://ports.ubuntu.com/pool/main/u/util-linux/libblkid-dev_2.39.3-9ubuntu6.3_arm64.deb && dpkg-deb -x libblkid-dev_2.39.3-9ubuntu6.3_arm64.deb / 
 
 # Install Golang
 RUN wget --no-check-certificate https://go.dev/dl/go1.24.6.linux-amd64.tar.gz
