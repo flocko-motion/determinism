@@ -1,4 +1,4 @@
-FROM ubuntu:noble
+FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -54,6 +54,7 @@ RUN locale-gen en_US.UTF-8
 RUN mkdir /tmp/install && cd /tmp/install
 
 # Download and extract libseccomp-dev for arm64 to build snapd bins
+
 #RUN wget --no-check-certificate http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libseccomp/libseccomp-dev_2.5.5-1ubuntu6_arm64.deb && dpkg-deb -x libseccomp-dev_2.5.5-1ubuntu6_arm64.deb / 
 #RUN wget --no-check-certificate http://ports.ubuntu.com/pool/main/u/util-linux/libblkid-dev_2.39.3-9ubuntu6.3_arm64.deb && dpkg-deb -x libblkid-dev_2.39.3-9ubuntu6.3_arm64.deb / 
 
@@ -83,7 +84,8 @@ RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Configure Python toolchain
 # RUN ln -s /usr/bin/python3 /usr/bin/python
-RUN apt-get -qq install -y python3-build python3-pip
+RUN pip install --upgrade pip
+RUN pip install build
 
 RUN apt-get -qq install -y gcc-aarch64-linux-gnu
 
@@ -98,4 +100,3 @@ RUN rm -rf /var/lib/apt/lists/* > /dev/null
 RUN rm -rf /tmp/install
 
 CMD ["bash"]
-
