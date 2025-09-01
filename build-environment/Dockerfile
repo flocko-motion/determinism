@@ -6,7 +6,7 @@ RUN dpkg --add-architecture arm64
 RUN cat <<EOT > /etc/apt/sources.list.d/ubuntu.sources
 Types: deb
 URIs: http://archive.ubuntu.com/ubuntu/
-Suites: noble noble-updates noble-backports
+Suites: focal focal-updates focal-backports
 Components: main universe restricted multiverse
 Architectures: amd64
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
@@ -15,14 +15,14 @@ Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 ## this should mirror your choices in the previous section.
 Types: deb
 URIs: http://security.ubuntu.com/ubuntu/
-Suites: noble-security
+Suites: focal-security
 Components: main universe restricted multiverse
 Architectures: amd64
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 
 Types: deb
 URIs: http://ports.ubuntu.com/ubuntu-ports/
-Suites: noble noble-updates noble-backports
+Suites: focal focal-updates focal-backports
 Components: main universe restricted multiverse
 Architectures: arm64
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
