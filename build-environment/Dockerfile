@@ -21,10 +21,7 @@ RUN apt-get -qq install -y grub-common gnupg2 libapparmor-dev indent libcap-dev 
 RUN apt-get -qq install -y libudev-dev pkg-config python3-docutils python3-markdown tzdata xfslibs-dev  dbus squashfs-tools udev gcc-10 autoconf-archive flake8 python3-bs4 python3-pytest
 RUN apt-get -qq install -y libfuse-dev libgnutls28-dev
 RUN apt-get -qq install -y clang gcovr lcov
-RUN apt-get -qq install -y qemu
-RUN apt-get -qq install -y qemu-user-static
-RUN apt-get -qq install -y binfmt-support
-RUN apt-get -qq install -y debootstrap
+RUN apt-get -qq install -y qemu-user-static binfmt-support debootstrap
 
 RUN locale-gen en_US.UTF-8
 
