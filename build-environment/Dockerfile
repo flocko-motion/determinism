@@ -1,32 +1,6 @@
 FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND=noninteractive
-
-RUN dpkg --add-architecture arm64
-RUN cat <<EOT > /etc/apt/sources.list.d/ubuntu.sources
-Types: deb
-URIs: http://archive.ubuntu.com/ubuntu/
-Suites: focal focal-updates focal-backports
-Components: main universe restricted multiverse
-Architectures: amd64
-Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
-
-## Ubuntu security updates. Aside from URIs and Suites,
-## this should mirror your choices in the previous section.
-Types: deb
-URIs: http://security.ubuntu.com/ubuntu/
-Suites: focal-security
-Components: main universe restricted multiverse
-Architectures: amd64
-Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
-
-Types: deb
-URIs: http://ports.ubuntu.com/ubuntu-ports/
-Suites: focal focal-updates focal-backports
-Components: main universe restricted multiverse
-Architectures: arm64
-Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
-EOT
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 # NOTE: When adding more packages, DONT ADD THEM IN THIS SECTION - rather do it further down. That'll be beneficial for layer caching
 RUN apt-get -qq update
@@ -48,6 +22,7 @@ RUN apt-get -qq install -y libudev-dev pkg-config python3-docutils python3-markd
 RUN apt-get -qq install -y libfuse-dev libgnutls28-dev
 RUN apt-get -qq install -y libseccomp-dev:arm64 libblkid-dev:arm64
 RUN apt-get -qq install -y clang gcovr lcov
+RUN apt-get -qq install -y qemu qemu-user-static binfmt-support debootstrap
 RUN locale-gen en_US.UTF-8
 
 # Path for manual installs
@@ -55,8 +30,8 @@ RUN mkdir /tmp/install && cd /tmp/install
 
 # Download and extract libseccomp-dev for arm64 to build snapd bins
 
-#RUN wget --no-check-certificate http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libseccomp/libseccomp-dev_2.5.5-1ubuntu6_arm64.deb && dpkg-deb -x libseccomp-dev_2.5.5-1ubuntu6_arm64.deb / 
-#RUN wget --no-check-certificate http://ports.ubuntu.com/pool/main/u/util-linux/libblkid-dev_2.39.3-9ubuntu6.3_arm64.deb && dpkg-deb -x libblkid-dev_2.39.3-9ubuntu6.3_arm64.deb / 
+RUN wget --no-check-certificate http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libseccomp/libseccomp-dev_2.5.5-1ubuntu6_arm64.deb && dpkg-deb -x libseccomp-dev_2.5.5-1ubuntu6_arm64.deb / 
+RUN wget --no-check-certificate http://ports.ubuntu.com/pool/main/u/util-linux/libblkid-dev_2.39.3-9ubuntu6.3_arm64.deb && dpkg-deb -x libblkid-dev_2.39.3-9ubuntu6.3_arm64.deb / 
 
 # Install Golang
 RUN wget --no-check-certificate https://go.dev/dl/go1.24.6.linux-amd64.tar.gz
