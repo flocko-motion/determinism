@@ -22,6 +22,7 @@ RUN apt-get -qq install -y libudev-dev pkg-config python3-docutils python3-markd
 RUN apt-get -qq install -y libfuse-dev libgnutls28-dev
 RUN apt-get -qq install -y clang gcovr lcov
 RUN apt-get -qq install -y qemu-user-static binfmt-support debootstrap
+RUN apt-get -qq install -y proot
 
 RUN locale-gen en_US.UTF-8
 
